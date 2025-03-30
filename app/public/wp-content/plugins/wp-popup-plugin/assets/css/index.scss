@@ -1,0 +1,577 @@
+// Variabel warna utama
+$primary-color: #0073aa;
+$primary-hover: #005a87;
+$secondary-color: #28a745;
+$secondary-hover: #218838;
+$box-bg: #ffffff;
+$box-border: #ddd;
+$box-shadow: rgba(0, 0, 0, 0.1);
+$bg-light: #f8f9fa;
+
+// Container Utama
+.wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+
+	.dashboard-title {
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		color: #333;
+	}
+}
+
+// Layout Utama
+.dashboard-layout {
+	display: flex;
+	gap: 20px;
+	margin-top: 20px;
+
+	.large-column {
+		width: 66%;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.small-column {
+		width: 33%;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+}
+.p-15{
+	padding: 15px;
+}
+// Box Styling
+.dashboard-box {
+	background: $box-bg;
+	border: 1px solid $box-border;
+	box-shadow: 0px 4px 10px $box-shadow;
+	border-radius: 8px;
+	//transition: all 0.3s ease-in-out;
+
+	&:hover {
+		box-shadow: 0px 6px 15px $box-shadow;
+		transform: translateY(-3px);
+	}
+
+	&.ui-sortable-helper {
+		background-color: #f8f9fa;
+		opacity: 0.8;
+	}
+
+	// Header
+	.box-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid $box-border;
+
+	}
+
+	// Konten Box
+	.box-content {
+		p {
+			color: #666;
+			font-size: 14px;
+		}
+
+		a {
+			color: $primary-color;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		.container-sidebar{
+			display: flex;
+			flex-direction: row;
+			.sidebar {
+				width: 200px;
+				max-width: 200px;
+				background: #f4f4f4;
+				padding: 15px;
+				ul {
+					list-style: none;
+					padding: 0;
+					margin: 0;
+
+					li {
+						padding: 10px;
+						cursor: pointer;
+						border-bottom: 1px solid #ddd;
+						transition: background 0.3s;
+
+						&:hover {
+							background: #ddd;
+						}
+					}
+				}
+			}
+		}
+
+		.main-content {
+			flex: 1;
+			padding: 15px;
+			background: #fff;
+		}
+	}
+}
+
+// Tombol Aksi
+.box-action {
+	background: $primary-color;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+
+	&:hover {
+		background: $primary-hover;
+	}
+}
+
+// Input & Textarea
+.dashboard-input,
+.dashboard-textarea {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.dashboard-textarea {
+	height: 80px;
+	resize: none;
+}
+
+// Tombol Save
+.save-btn {
+	background: $secondary-color;
+	color: #fff;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: 10px;
+	transition: background 0.3s ease;
+
+	&:hover {
+		background: $secondary-hover;
+	}
+}
+
+// Efek Drag & Drop
+.drag-active {
+	border: 2px dashed $primary-color;
+	background-color: #f5f5f5;
+}
+
+.sortable-placeholder {
+	height: 100px;
+	background: rgba(0, 115, 170, 0.2);
+	border: 2px dashed $primary-color;
+}
+
+// RESPONSIVE: Tampilan Mobile
+@media screen and (max-width: 768px) {
+	.dashboard-layout {
+		flex-direction: column;
+		.large-column, .small-column {
+			width: 100%;
+		}
+	}
+
+
+
+	// Hilangkan efek drag di mobile
+	.dashboard-box {
+		cursor: default;
+	}
+}
+
+//input number percentage
+
+.input-container {
+	position: relative;
+	display: inline-block;
+
+	input {
+		width: 60px;
+		padding-right: 20px; // Ruang untuk %
+		text-align: right;
+		border: 1px solid #ccc;
+
+		// Hilangkan panah di WebKit (Chrome, Safari, Edge)
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		// Hilangkan panah di Firefox
+		-moz-appearance: textfield;
+
+		// Hilangkan panah di Microsoft Edge
+		&::-ms-clear,
+		&::-ms-reveal {
+			display: none;
+		}
+	}
+
+	.percentage {
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none; // Tidak bisa diklik
+		font-size: 14px;
+		color: gray;
+	}
+}
+.select-container {
+	position: relative;
+	display: inline-block;
+
+	select {
+		appearance: none; // Hilangkan default style browser
+		width: 200px;
+		font-size: 14px;
+		border: 2px solid #ccc;
+		border-radius: 5px;
+		background-color: #fff;
+		cursor: pointer;
+		&:focus {
+			border-color: #FFFFFF;
+			outline: none;
+		}
+	}
+}
+.radio-image-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); // 3 kolom di web
+	gap: 10px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr; // 1 kolom di mobile
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		cursor: pointer;
+		padding: 10px;
+		border-radius: 5px;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			background-color: #f5f5f5;
+		}
+	}
+
+	input[type="radio"] {
+		appearance: none;
+		width: 16px;
+		height: 16px;
+		border: 2px solid #ccc;
+		border-radius: 50%;
+		position: relative;
+		cursor: pointer;
+		transition: border 0.3s;
+
+		&:checked {
+			border: 6px solid #007bff;
+			&::before{
+				background-color: transparent;
+			}
+		}
+	}
+
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 5px;
+		border: 2px solid #ddd;
+		object-fit: cover;
+		transition: 0.3s;
+	}
+}
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+.popup-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6); // Transparan gelap
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	backdrop-filter: blur(5px); // Efek blur
+}
+
+.popup-content {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	width: 400px;
+	max-width: 80%;
+	height:50%;
+	position: relative;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	animation: fadeIn 0.3s ease-in-out;
+	background-size: cover;
+	background-position: center;
+	color: white;
+
+	.popup-title {
+		margin-top: 12px;
+		font-size: 2.5rem;
+		font-family: 'Sigmar', cursive;
+		text-align: center;
+		color: #FFFFFF;
+	}
+
+
+	.popup-body {
+		margin-top: 10px;
+	}
+
+	.popup-close {
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+		color: white;
+	}
+	.button {
+		background-color: #007bff; // Warna biru
+		color: white;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+
+		&:hover {
+			background-color: #0056b3; // Biru lebih gelap saat hover
+			transform: scale(1.05); // Efek sedikit membesar
+		}
+
+		&:active {
+			transform: scale(0.95); // Efek menekan saat diklik
+		}
+	}
+
+}
+
+// Animasi masuk
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+.popup-content {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	width: 400px;
+	max-width: 80%;
+	height:50%;
+	position: relative;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	animation: fadeIn 0.3s ease-in-out;
+	background-size: cover;
+	background-position: center;
+	color: white;
+
+	.popup-title {
+		margin-top: 12px;
+		font-family: 'Sigmar', cursive;
+		text-align: center;
+	}
+
+	.popup-body{
+		margin-top: 50px;
+	}
+
+	.popup-close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+		color: black;
+	}
+	.button{
+		background-color: #007bff; // Warna biru
+		color: white;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+
+		&:hover {
+			background-color: #0056b3; // Biru lebih gelap saat hover
+			transform: scale(1.05); // Efek sedikit membesar
+		}
+
+		&:active {
+			transform: scale(0.95); // Efek menekan saat diklik
+		}
+	}
+
+}
+
+
+.popup-content-admin {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	width: 400px;
+	max-width: 80%;
+	height:50%;
+	position: relative;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	animation: fadeIn 0.3s ease-in-out;
+	background-size: cover;
+	background-position: center;
+	color: white;
+
+	.popup-title-admin {
+		margin-top: 12px;
+		font-family: 'Sigmar', cursive;
+		text-align: center;
+	}
+
+	.popup-body-admin {
+		margin-top: 10px;
+	}
+
+	.popup-close-admin {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+		color: black;
+	}
+	.button-admin {
+		background-color: #007bff; // Warna biru
+		color: white;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+
+		&:hover {
+			background-color: #0056b3; // Biru lebih gelap saat hover
+			transform: scale(1.05); // Efek sedikit membesar
+		}
+
+		&:active {
+			transform: scale(0.95); // Efek menekan saat diklik
+		}
+	}
+
+}
+
+.popup-content-admin2 {
+	background: white;
+	width: 400px;
+	max-width: 80%;
+	position: relative;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	animation: fadeIn 0.3s ease-in-out;
+	color: white;
+	.popup-close-admin {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: none;
+		border: none;
+		font-size: 12px;
+		cursor: pointer;
+		color: black;
+	}
+	.row {
+		display: flex;
+		width: 100%;
+		.image-popup {
+			width: 50%;
+			height: 100px;
+		}
+		.popup-title-admin {
+			margin-top: 12px;
+			font-family: 'Sigmar', cursive;
+			text-align: center;
+		}
+
+		.popup-body-admin {
+			margin-top: 10px;
+			text-align: center;
+		}
+
+
+
+		.button-admin {
+			background-color: #007bff;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			margin-top: 15px;
+
+			&:hover {
+				background-color: #0056b3;
+				transform: scale(1.05);
+			}
+
+			&:active {
+				transform: scale(0.95);
+			}
+		}
+	}
+
+
+}
+

@@ -1,0 +1,11 @@
+{
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/",
+      "config\\": "config/",
+      "view\\component\\": "view/component/",
+      "assets\\": "assets/",
+      "database\\": "database/"
+    }
+  }
+}
